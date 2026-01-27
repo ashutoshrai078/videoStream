@@ -3,7 +3,7 @@ const asyncHandler = (requestHandler) => {
     Promise.resolve(requestHandler(req,res,next)).catch((error) => next(error))
   }
 }  
-
+// here we've passed a func named request handler or named the func as request handler then we've extracted the req, res, next and passed it to promise
 
 export {asyncHandler}
 
@@ -20,4 +20,4 @@ export {asyncHandler}
 //       message: error.message
 //     })
 //   }
-// } 
+// }
