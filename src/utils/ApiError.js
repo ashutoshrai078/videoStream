@@ -5,7 +5,8 @@ class ApiError extends Error{
     errors = [],
     stack = ""
   ){
-    super(message)
+    super(message) // here we'll send the current message to error's message constructor and it will be used from there
+    
     this.statusCode = statusCode,
     this.data = null
     this.message = message
