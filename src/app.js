@@ -23,4 +23,12 @@ app.use(express.static("public"))
 app.use(cookieParser());
 //for performing crud ops to users browser cookies securly
 
+//Routes
+import userRouter from './routes/user.routes.js'
+
+
+//routes declartion
+
+app.use('/users', userRouter)
+
 export {app}
