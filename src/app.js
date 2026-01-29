@@ -29,6 +29,6 @@ import userRouter from './routes/user.routes.js'
 
 //routes declartion
 
-app.use('/users', userRouter)
+app.use('/api/v1/users', userRouter) // here we're sending the control to the router file standard practice when this route will be hit the control pass over
 
 export {app}
