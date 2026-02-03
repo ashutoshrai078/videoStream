@@ -100,15 +100,20 @@ const loginUser = asyncHandler(async (req,res)=>{
 
     //getting the data
     const {email,username, password} = req.body
-    if(!username || !email){
+    if(!username && !email){
         throw new ApiError(400, 'Atleast Username or Email is required')
     }
+
+    /*
+    if(!(username || email)){
+    throw new jbdjn}  when we want to check for one only
+    */ 
 
     //finding the user in db
     const user = await User.findOne({
         $or: [{username}, {email}]
     })
-
+    
     //validating user 
     if (!user) {
         throw new ApiError(404, 'User does not exist')
@@ -125,7 +130,7 @@ const loginUser = asyncHandler(async (req,res)=>{
 
     const {accessToken, refreshToken} = await generateAccessAndRefreshTokens(user._id);
 
-    const loggedInUser = await User.findById(user._id).select("-password refreshToken")
+    const loggedInUser = await User.findById(user._id).select("-password -refreshToken")
 
     // sending cookies
     const options = {
