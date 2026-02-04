@@ -49,7 +49,12 @@ const registerUser = asyncHandler(async (req, res)=>{
   throw new ApiError (409, 'username already exist')
  }
  
- const avatarLocalPath = req.files?.avatar[0]?.path
+//  const avatarLocalPath = req.files?.avatar[0]?.path
+
+let avatarLocalPath;
+if (req.files && Array.isArray(req.files.avatar) && req.files.avatar.length > 0) {
+    avatarLocalPath = req.files.avatar[0].path
+}
 //  const coverLocalPath  = req.files?.coverImage[0]?.path
 
 let coverLocalPath;
